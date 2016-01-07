@@ -16,6 +16,8 @@ Others issue:
 * ROUTE attribute in DRUG table is SQL key word, so replace to ROUTE_.
 * REPT_DT in DEMO12Q4 issue.
 
+You can find a database's meta data in [scripts/metadata.py](https://github.com/Phate334/FAERS-DataPreprocesser/blob/master/scripts/metadata.py)
+
 
 # Directory Structure
 
