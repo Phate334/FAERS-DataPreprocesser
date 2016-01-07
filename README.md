@@ -6,7 +6,7 @@ Not only [FAERS data files](http://www.fda.gov/Drugs/GuidanceComplianceRegulator
 
 This raw data have these format issue:
 
-* Some recodes contain newline characters(\n),it's illegal in line-oriented datafile. We check each line make sure the number of fields is right.
+* Some recodes contain newline characters(\n),it's illegal in line-oriented datafile. We check each line make sure the number of attributes is right.
 
 # Directory Structure
 
