@@ -19,7 +19,7 @@ Others issue:
 You can find a database's meta data in [scripts/metadata.py](https://github.com/Phate334/FAERS-DataPreprocesser/blob/master/scripts/metadata.py)
 
 ### Abnormal delimiter
-In older AERS data(04Q1~12Q3), every records except INDI table are end by delimiter($). This causes inconvenience when we parse datafile.
+In older AERS data(04Q1~12Q3), every records except INDI table are end by delimiter($). This causes inconvenience when we parse datafile. So we delete it,consistent with the new data.
 
 ![Abnormal delimiter](http://phate334.github.io/FAERS-DataPreprocesser/delimiter.png "Abnormal delimiter example")
 
