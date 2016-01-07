@@ -1,16 +1,20 @@
 # FAERS-DataPreprocesser
 This repositore stores some script tools to clear FAERS ascii data. We use this dataset to build a website iADRs, it's can help user query the relation between drugs and adverse reactions.
 
-# Source data issue
+## Our changes to the original data
 Not only [FAERS data files](http://www.fda.gov/Drugs/GuidanceComplianceRegulatoryInformation/Surveillance/AdverseDrugEffects/ucm082193.htm), we also process [older AERS data](http://www.fda.gov/Drugs/GuidanceComplianceRegulatoryInformation/Surveillance/AdverseDrugEffects/ucm083765.htm).
 
-This raw data have these format issue:
+### Newline character issue
+Some recodes contain newline characters(\n),it's illegal in line-oriented datafile. We check each line,and make sure the number of attributes is right.
 
-* Some recodes contain newline characters(\n),it's illegal in line-oriented datafile. We check each line,and make sure the number of attributes is right.
-
-* Attributes of this dataset are change four times, we are summarized in  [this](https://docs.google.com/spreadsheets/d/1EmKrWoOgbV9tZPOFrOHlHarW_TGz1uwyFuPMZ6DKGSg/edit?usp=sharing) form. Red frame indicates those not this attribute.You can see some attributes are change name like ISR, CASE. We keep all attribute name are latest version, no matter when quarterly release it. But we not remove any attribute, even it not exist in new version.
+### Attribute changes
+Attributes of this dataset are change four times, we are summarized in  [this](https://docs.google.com/spreadsheets/d/1EmKrWoOgbV9tZPOFrOHlHarW_TGz1uwyFuPMZ6DKGSg/edit?usp=sharing) form. Red frame indicates those not this attribute.You can see some attributes are change name like ISR, CASE. We keep all attribute name are latest version, no matter when quarterly release it. But we not remove any attribute, even it not exist in new version.
 
 ![attributes changes](http://phate334.github.io/FAERS-DataPreprocesser/attr_change.PNG)
+
+Others issue:
+* ROUTE attribute in DRUG table is SQL key word, so replace to ROUTE_.
+* REPT_DT in DEMO12Q4 issue.
 
 
 # Directory Structure
