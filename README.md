@@ -1,8 +1,8 @@
 # FAERS-DataPreprocesser
-This repository stores some script tools to cleanse the FAERS ASCII data. We use this dataset to build iADRs([http://iadr.csie.nuk.edu.tw/](http://iadr.csie.nuk.edu.tw/ "iADRs")), an online web-based analytical system for detecting and analyzing suspected signals of adverse drug reactions and drug-interactions.
+This repository stores some script tools to cleanse the FAERS ASCII data. We use this dataset to build iADRs ([http://iadr.csie.nuk.edu.tw/](http://iadr.csie.nuk.edu.tw/ "iADRs")), an online web-based analytical system for detecting and analyzing suspected signals of adverse drug reactions and drug-interactions.
 
 ## Our changes to the original data
-We process not only [FAERS data files](http://www.fda.gov/Drugs/GuidanceComplianceRegulatoryInformation/Surveillance/AdverseDrugEffects/ucm082193.htm) but also the [older AERS data](http://www.fda.gov/Drugs/GuidanceComplianceRegulatoryInformation/Surveillance/AdverseDrugEffects/ucm083765.htm).All records in these files are delimitated by newline (\n), and attributes by dollar sign ($), as illustrated in the following example snapshot. However, we found two peculiar cases that need special care, i.e., newline character in a record and abnormal attribute delimiter.
+We process not only [FAERS data files](http://www.fda.gov/Drugs/GuidanceComplianceRegulatoryInformation/Surveillance/AdverseDrugEffects/ucm082193.htm) but also the [older AERS data](http://www.fda.gov/Drugs/GuidanceComplianceRegulatoryInformation/Surveillance/AdverseDrugEffects/ucm083765.htm). All records in these files are delimitated by newline (\n), and attributes by dollar sign ($), as illustrated in the following example snapshot. However, we found two peculiar cases that need special care, i.e., newline character in a record and abnormal attribute delimiter.
 
 ![data file](http://phate334.github.io/FAERS-DataPreprocesser/datafile.png)
 
@@ -19,7 +19,7 @@ FAERS attributes have been changed several times, which are summarized in [the f
 
 This summarization also indicates the evolution of attribute names, which are highlighted with red color. For example, CASEID has been changed from CASE since 12Q3 and PRIMARYID changed from ISR. 
 
-For those attributes that are still “active” in the current release, we always adopt the newest name, disregarding the time the attribute is introduced or changed, while for those “inactive” attributes, i.e., they are no longer used by FAERS, we still keep them but with missing values.
+For those attributes that are still “active” in the current release, we always adopt the newest name, disregarding the time the attribute is introduced or changed, while for those “inactive” attributes, i.e., they are no longer used by FAERS, we still keep them but filled with missing values.
 
 ![attributes changes](http://phate334.github.io/FAERS-DataPreprocesser/attr_change.PNG "attributes changes")
 
@@ -34,11 +34,11 @@ We introduced several new attributes in the DEMO and DRUG tables.
 
     - -WT_KG: This weight attribute is calculated from WT and WT_COD, with unit in KG
 
-    - -AGE_TYPE: A discretization of AGE and AGE_COD attribute into 10 tags, based on the Age group in MeSH. You can check detail in this table.
+    - -AGE_TYPE: A discretization of AGE and AGE_COD attribute into 10 tags, based on the Age group in MeSH. You can check detail in [this](https://docs.google.com/document/d/1dmfvHgMGrir3Cwzy_5UCgrcsWDqhHcpM9_UQcFajVBM/edit?usp=sharing "Age group detail") table.
 
 2. DRUG
 
-    - RXCUI: We transform the DRUGNAME attribute into rxcui code.
+    - RXCUI: We transform the DRUGNAME attribute into [rxcui](https://www.nlm.nih.gov/research/umls/rxnorm/overview.html "RxNorm Concept Unique Identifier") code.
     
 
 ## Directory Structure
