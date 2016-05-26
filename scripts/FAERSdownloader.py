@@ -10,9 +10,9 @@
 # -------------------------------------------------------------------------------
 import os
 import re
+from urllib import urlretrieve
 from urllib2 import urlopen
 from bs4 import BeautifulSoup
-import DownloadHelper as dh
 
 # this script will find target in this list pages.
 host_url = "http://www.fda.gov"
@@ -21,14 +21,13 @@ target_page = ["http://www.fda.gov/Drugs/GuidanceComplianceRegulatoryInformation
 # local directory to save file.
 source_dir = "FAERSsrc"
 data_dir = "FAERSdata"
-# if not os.path.isdir(source_dir):
-#     os.makedirs(source_dir)
-# if not os.path.isdir(data_dir):
-#     os.makedirs(data_dir)
-
+if not os.path.isdir(source_dir):
+    os.makedirs(source_dir)
+if not os.path.isdir(data_dir):
+    os.makedirs(data_dir)
 
 def get_files_url():
-    """ get all file name and url in target_page
+    """ 找到target_page中所有需要下載的檔案
     :return: {"name":"url"}
     """
     files = {}
@@ -53,7 +52,7 @@ def main():
     for u in files:
         file_name = re.search("\d{4}[qQ]\d", u).group()
         print(file_name)
-        # dh.start(files[u], os.path.join(source_dir, file_name.lower() + ".zip"))
+        urlretrieve(files[u], os.path.join(source_dir, file_name.lower() + ".zip"))
 
 if __name__ == "__main__":
     main()
