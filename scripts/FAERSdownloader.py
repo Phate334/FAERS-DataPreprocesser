@@ -1,6 +1,6 @@
 # -*-coding:utf-8-*-
 # -------------------------------------------------------------------------------
-# Name:        downloader.py
+# Name:        FAERS downloader
 # Purpose:     check local data,and get the latest quarterly data files from 
 #              FAERS
 #
@@ -9,23 +9,22 @@
 # Created:     28/10/2015
 # -------------------------------------------------------------------------------
 import os
+import re
 from urllib2 import urlopen
 from bs4 import BeautifulSoup
 import DownloadHelper as dh
 
 # this script will find target in this list pages.
 host_url = "http://www.fda.gov"
-target_page = ["http://www.fda.gov/Drugs/GuidanceComplianceRegulatoryInformation/Surveillance/AdverseDrugEffects/"
-              "ucm083765.htm",
-              "http://www.fda.gov/Drugs/GuidanceComplianceRegulatoryInformation/Surveillance/AdverseDrugEffects/"
-              "ucm082193.htm"]
+target_page = ["http://www.fda.gov/Drugs/GuidanceComplianceRegulatoryInformation/Surveillance/AdverseDrugEffects/ucm083765.htm",
+               "http://www.fda.gov/Drugs/GuidanceComplianceRegulatoryInformation/Surveillance/AdverseDrugEffects/ucm082193.htm"]
 # local directory to save file.
-source_path = "I:\\Temp\\source"
-data_path = "I:\\Temp\\data"
-if not os.path.isdir(source_path):
-    os.makedirs(source_path)
-if not os.path.isdir(data_path):
-    os.makedirs(data_path)
+source_dir = "FAERSsrc"
+data_dir = "FAERSdata"
+# if not os.path.isdir(source_dir):
+#     os.makedirs(source_dir)
+# if not os.path.isdir(data_dir):
+#     os.makedirs(data_dir)
 
 
 def get_files_url():
@@ -34,7 +33,10 @@ def get_files_url():
     """
     files = {}
     for page_url in target_page:
-        page_bs = BeautifulSoup(urlopen(page_url), "lxml")
+        try:
+            page_bs = BeautifulSoup(urlopen(page_url), "lxml")
+        except:
+            page_bs = BeautifulSoup(urlopen(page_url))
         for url in page_bs.find_all("a"):
             a_string = unicode(url.string)
             if "ASCII" in a_string.upper():
@@ -48,11 +50,10 @@ def get_files_url():
 
 def main():
     files = get_files_url()
-    print(len(files))
     for u in files:
-        file_name = u[u.find(".")-4:u.find(".")+4]
+        file_name = re.search("\d{4}[qQ]\d", u).group()
         print(file_name)
-        dh.start(files[u], os.path.join(source_path, file_name.lower()))
+        # dh.start(files[u], os.path.join(source_dir, file_name.lower() + ".zip"))
 
 if __name__ == "__main__":
     main()
