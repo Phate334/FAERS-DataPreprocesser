@@ -71,7 +71,7 @@ def main():
     unpacked_file = os.listdir(data_dir)
     for zip_file_name in os.listdir(source_dir):
         quarter_zip_file = ZipFile(os.path.join(source_dir, zip_file_name),"r")
-        quarter_name = re.search("\d{2}[qQ]\d", zip_file_name).group()
+        quarter_name = re.search("\d{4}[qQ]\d", zip_file_name).group().upper()
         if quarter_name not in unpacked_file:  # 已解壓縮目錄中還沒有的資料
             print("extract " + zip_file_name)
             des_path = os.path.join(data_dir, quarter_name)
@@ -82,7 +82,7 @@ def main():
                     continue
                 if "SIZE" in file_name.upper() or "STAT" in file_name.upper():
                     continue
-                if not re.search("[A-Z]{4}\d{2}[qQ]\d.[txTX]{3}", file_name):
+                if not re.search("[A-Za-z]{4}\d{2}[qQ]\d.[txTX]{3}", file_name):
                     continue
                 src_file = quarter_zip_file.open(member)
                 des_file = file(os.path.join(des_path, file_name.upper()), "wb")

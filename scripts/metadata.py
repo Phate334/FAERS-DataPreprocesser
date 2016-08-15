@@ -1,32 +1,33 @@
 # -*- coding:utf-8 -*-
-sqlserver_meta = {
+ms_meta = {
     "DEMO":{
         "PRIMARYID":"int",
         "CASEID":"int",
         "CASEVERSION":"int",
-        "I_F_CODE":"char(2)",
-        "EVENT_DT":"char(10)",
-        "MFR_DT":"char(10)",
-        "INIT_FDA_DT":"char(10)",
-        "FDA_DT":"char(10)",
+        "I_F_CODE":"char(1)",
+        "EVENT_DT":"char(8)",
+        "MFR_DT":"char(8)",
+        "INIT_FDA_DT":"char(8)",
+        "FDA_DT":"char(8)",
         "REPT_COD":"char(4)",
-        "AUTH_NUM":"",
+        "AUTH_NUM":"varchar(70)",
         "MFR_NUM":"varchar(100)",
         "MFR_SNDR":"varchar(100)",
-        "LIT_REF":"",
-        "AGE":"real",
+        "LIT_REF":"varchar(550)",
+        "AGE":"varchar(30)",
         "AGE_COD":"char(5)",
-        "AGE_GRP":"",
+        "AGE_GRP":"char(1)",
         "AGE_TYPE":"int",
         "SEX":"char(5)",
+        "GNDR_COD":"char(5)",
         "E_SUB":"char(3)",
-        "WT":"real",
+        "WT":"varchar(10)",
         "WT_COD":"char(5)",
         "WT_KG":"float",
         "REPT_DT":"char(10)",
         "TO_MFR":"char(3)",
         "OCCP_COD":"char(5)",
-        "REPORTER_COUNTRY":"varchar(30)",
+        "REPORTER_COUNTRY":"varchar(50)",
         "OCCR_COUNTRY":"char(5)",
         "FOLL_SEQ":"varchar(10)",
         "IMAGE":"varchar(10)",
@@ -37,21 +38,21 @@ sqlserver_meta = {
         "PRIMARYID":"int",
         "CASEID":"int",
         "DRUG_SEQ":"bigint",
-        "ROLE_COD":"char(5)",
+        "ROLE_COD":"char(2)",
         "DRUGNAME":"varchar(500)",
-        "PROD_AI":"",
-        "VAL_VBM":"char(5)",
-        "ROUTE_":"varchar(30)",
+        "PROD_AI":"varchar(350)",
+        "VAL_VBM":"char(1)",
+        "ROUTE_":"varchar(40)",
         "DOSE_VBM":"varchar(300)",
         "CUM_DOSE_CHR":"real",
-        "CUM_DOSE_UNIT":"char(20)",
-        "DECHAL":"char(5)",
-        "RECHAL":"char(5)",
-        "LOT_NUM":"varchar(300)",
-        "EXP_DT":"varchar(100)",
-        "NDA_NUM":"char(20)",
-        "DOSE_AMT":"char(20)",
-        "DOSE_UNIT":"char(20)",
+        "CUM_DOSE_UNIT":"char(8)",
+        "DECHAL":"char(10)",
+        "RECHAL":"char(2)",
+        "LOT_NUM":"varchar(400)",
+        "EXP_DT":"varchar(150)",
+        "NDA_NUM":"varchar(30)",
+        "DOSE_AMT":"char(15)",
+        "DOSE_UNIT":"char(15)",
         "DOSE_FORM":"varchar(50)",
         "DOSE_FREQ":"char(20)"
     },
@@ -59,12 +60,12 @@ sqlserver_meta = {
         "PRIMARYID":"int",
         "CASEID":"int",
         "PT":"varchar(100)",
-        "DRUG_REC_ACT":""
+        "DRUG_REC_ACT":"varchar(70)"
     },
     "OUTC":{
         "PRIMARYID":"int",
         "CASEID":"int",
-        "OUTC_COD":"varchar(10)"
+        "OUTC_COD":"char(2)"
     },
     "RPSR":{
         "PRIMARYID":"int",
@@ -78,7 +79,7 @@ sqlserver_meta = {
         "START_DT":"char(10)",
         "END_DT":"varchar(10)",
         "DUR":"varchar(10)",
-        "DUR_COD":"char(5)",
+        "DUR_COD":"char(6)",
     },
     "INDI":{
         "PRIMARYID":"int",
@@ -87,3 +88,6 @@ sqlserver_meta = {
         "INDI_PT":"varchar(100)"
     }
 }
+
+create_table = "CREATE TABLE {0} ( {1} );"
+insert_data = "INSERT INTO {0} ( {1} ) VALUES ( {2} );"
